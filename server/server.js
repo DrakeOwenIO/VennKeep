@@ -1,29 +1,31 @@
+// Includes
 const express = require('express');
 const cors = require('cors')
-const { toEditorSettings } = require('typescript');
 const { v4: uuidv4 } = require('uuid');
 const app = express();
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 require('dotenv').config();
 
-// MIDDLEWARE
-app.use(express.json({extended: false}));
-app.use(cors());
+// Load Item model
+const Item = require("./models/Item");
 
-// Fake Data 
-const items = [
-    {
-        title: "Server 1",
-        id: 1
-    },
-    {
-        title: "Server 2",
-        id: 2
-    },
-    {
-        title: "Laptop",
-        id: 3
-    }
-]
+// MIDDLEWARE
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+// Configure Mongo
+const db = "mongodb://localhost/VennKeep";
+
+// Connect to Mongo with Mongoose
+mongoose
+    .connect(
+        db,
+        { useNewUrlParser: true }
+    )
+    .then(() => console.log("Mongo connected"))
+    .catch(err => console.log(err));
 
 // Basic get route
 app.get("/", (req, res) => {
@@ -37,7 +39,7 @@ app.post("/", (req, res) => {
         id: uuidv4()
     }
 
-    articles.push(newItem)
+    items.push(newItem)
     res.status(201).json(items)
 });
 
