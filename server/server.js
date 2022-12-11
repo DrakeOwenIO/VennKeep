@@ -27,20 +27,43 @@ mongoose
     .then(() => console.log("Mongo connected"))
     .catch(err => console.log(err));
 
-// Basic get route
-app.get("/", (req, res) => {
-    res.status(200).json(articles)
+
+// **** ROUTES ****
+
+// Item Post
+app.post("/item", (req, res) => {
+
+    const newItem = new Item({
+        name: req.body.name,
+        model: req.body.model
+    });
+
+// Create a new item
+Item.create(newItem)
+    .then(function(dbItem) {
+        // View the added result in the console
+        console.log(dbItem);
+        res.json(dbItem);
+    })
+    .catch(function(err) {
+        // If an error occurred, log it
+        console.log(err);
+        res.json(err);
+    });
 });
 
-// Basic Post
-app.post("/", (req, res) => {
-    const newItem = {
-        title: req.body.title,
-        id: uuidv4()
-    }
+// Item Get
+app.get("/item/:id", (req, res) => {
 
-    items.push(newItem)
-    res.status(201).json(items)
+    // Use Mongoose to get the Product by the id
+    Item.findOne({ _id: req.params.id })
+        .then(function(dbProduct) {
+            res.json(dbProduct);
+        })
+        .catch(function(err) {
+           console.log(err);
+           res.json(err);
+        });
 });
 
 // Open the server up on port 5001
