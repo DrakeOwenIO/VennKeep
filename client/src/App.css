@@ -1,4 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .content-box{
     margin-left: 15%;
     padding: 2%;
+}
+
+.top-container{
+    display: flex;
+    width: 100%;
+}
+
+.top-nav{
+    margin-right: 0%;
+    width: 100%;
+    border: 2px solid blueviolet;
+}
+
+.top-search{
+    width: 20%;
 }
