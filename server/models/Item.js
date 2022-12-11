@@ -3,15 +3,19 @@ const Schema = mongoose.Schema;
 
 // Create Item Schema
 const ItemSchema = new Schema({
+  id: {
+    type: Number,
+    required: true
+  },
   name: {
     type: String,
     required: true
   },
-  price: {
-    type: Number,
-    required: true
+  model: {
+    type: String,
+    require: true
   },
 });
 
 // Export the Schema
-module.exports = Product = mongoose.model("Products", ProductSchema);
+module.exports = Item = mongoose.model("Items", ItemSchema);
