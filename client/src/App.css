@@ -5,11 +5,13 @@
 }
 
 .content-box{
-    margin-left: 15%;
+    margin-right: 0%;
+    width: 100%;
     padding: 2%;
+    border: 2px solid blueviolet;
 }
 
-.top-container{
+.top-flex-container{
     display: flex;
     width: 100%;
 }
@@ -20,6 +22,18 @@
     border: 2px solid blueviolet;
 }
 
-.top-search{
+.search{
     width: 20%;
+    border: 2px solid blueviolet;
+}
+
+.sidebar{
+    width: 20%;
+    border: 2px solid blueviolet;
+    height: 100vh;
+}
+
+.bottom-flex-container{
+    display: flex;
+    width: 100%;
 }

@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mt-3{
+    color: white;
+}
+
+.new-item-container > h1{
+    text-align: left;
+    padding-bottom: 2%;
+}

@@ -2,8 +2,12 @@ import React from "react";
 import "./styles/search.css"
 
 function Search() {
-    return <div>
-        <h1>Search Bar</h1>
+    return <div className="container">
+        <div className="form-group">
+            <h1>Search</h1>
+            <input className="form-control"></input>
+        </div>
+        
     </div>
 }
 
