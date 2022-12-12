@@ -32,26 +32,15 @@ mongoose
 // **** ROUTES ****
 
 // Item Post
-app.post("/create", (req, res) => {
-
+router.route("/create").post((req, res)=> {
+    const name = req.body.title;
+    const content = req.body.content;
     const newItem = new Item({
-        name: req.body.name,
-        model: req.body.model
+        name,
+        model
     });
-
-// Create a new item
-Item.create(newItem)
-    .then(function(dbItem) {
-        // View the added result in the console
-        console.log(dbItem);
-        res.json(dbItem);
-    })
-    .catch(function(err) {
-        // If an error occurred, log it
-        console.log(err);
-        res.json(err);
-    });
-});
+    newItem.save();
+})
 
 // Item Get
 app.get("/item/:id", (req, res) => {
