@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require('dotenv').config();
+const router = express.Router();
 
 // Load Item model
 const Item = require("./models/Item");
@@ -31,7 +32,7 @@ mongoose
 // **** ROUTES ****
 
 // Item Post
-app.post("/item", (req, res) => {
+app.post("/create", (req, res) => {
 
     const newItem = new Item({
         name: req.body.name,
