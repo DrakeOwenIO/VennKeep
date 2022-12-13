@@ -6,15 +6,15 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require('dotenv').config();
-const router = express.Router();
 
 // Load Item model
-const Item = require("./models/Item");
+const Item = require("./models/itemSchema");
 
 // MIDDLEWARE
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use("/", require("./routes/itemRoute"));
 
 // Configure Mongo
 const db = "mongodb://localhost/VennKeep";
@@ -32,15 +32,26 @@ mongoose
 // **** ROUTES ****
 
 // Item Post
-router.route("/create").post((req, res)=> {
-    const name = req.body.title;
-    const content = req.body.content;
-    const newItem = new Item({
-        name,
-        model
-    });
-    newItem.save();
-})
+// app.post("/item", (req, res) => {
+
+//     const newItem = new Item({
+//         name: req.body.name,
+//         model: req.body.model
+//     });
+
+// // Create a new item
+// Item.create(newItem)
+//     .then(function(dbItem) {
+//         // View the added result in the console
+//         console.log(dbItem);
+//         res.json(dbItem);
+//     })
+//     .catch(function(err) {
+//         // If an error occurred, log it
+//         console.log(err);
+//         res.json(err);
+//     });
+// });
 
 // Item Get
 app.get("/item/:id", (req, res) => {
@@ -55,6 +66,7 @@ app.get("/item/:id", (req, res) => {
            res.json(err);
         });
 });
+
 
 // Open the server up on port 5001
 const PORT = process.env.PORT || 5001;

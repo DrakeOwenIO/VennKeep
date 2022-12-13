@@ -10,6 +10,14 @@ import Search from './components/Search';
 import Sidebar from './components/sidebar';
 
 function App() {
+  //const [setItems] = useState();
+
+  const createItem = async (text) => {
+    const res = await axios.post("http://localhost:5001/item", {message: text});
+   //setItems(res.data);
+  }
+ 
+
   return (
     <Router>
       <div className='page-container'>
@@ -22,7 +30,7 @@ function App() {
           <div className='sidebar bg-dark'><Sidebar /></div>
           <div className='content-box bg-dark'>
             <Routes>
-              <Route path="/new" element={<NewItem />} />
+              <Route path="/new" element={<NewItem createItem={createItem}/>} />
               <Route path="/edit" element={<EditItem />} /> 
               <Route path="/reporting" element={<Reporting />} /> 
             </Routes>

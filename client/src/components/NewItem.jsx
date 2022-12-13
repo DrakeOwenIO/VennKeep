@@ -20,12 +20,12 @@ function NewItem() {
     }
 
     function handleClick(event) {
+        event.preventDefault();
         const newItem = {
             name: input.name,
             model: input.model
         }
-        event.preventDefault();
-        axios.post('http://localhost:3001/create', NewItem)
+        axios.post('http://localhost:5001/create', newItem)
     }
 
     return <div className="new-item-container">
